@@ -7,7 +7,7 @@ import org.webrtc.PeerConnectionFactory
  * Device.
  */
 class Device(
-    private val peerConnectionFactory: PeerConnectionFactory,
+    private val peerConnectionFactory: PeerConnectionFactory?,
 ) {
     private var nativeDevice: Long = nativeNewDevice()
 
@@ -67,7 +67,7 @@ class Device(
             dtlsParameters = dtlsParameters,
             sctpParameters = sctpParameters,
             configuration = rtcConfig,
-            peerConnectionFactory = peerConnectionFactory.nativePeerConnectionFactory,
+            peerConnectionFactory = peerConnectionFactory?.nativePeerConnectionFactory,
             appData = appData,
         )
     }
@@ -96,7 +96,7 @@ class Device(
             dtlsParameters = dtlsParameters,
             sctpParameters = sctpParameters,
             configuration = rtcConfig,
-            peerConnectionFactory = peerConnectionFactory.nativePeerConnectionFactory,
+            peerConnectionFactory = peerConnectionFactory?.nativePeerConnectionFactory,
             appData = appData,
         )
     }
@@ -130,7 +130,7 @@ class Device(
         dtlsParameters: String,
         sctpParameters: String?,
         configuration: PeerConnection.RTCConfiguration,
-        peerConnectionFactory: Long,
+        peerConnectionFactory: Long?,
         appData: String?,
     ): SendTransport
 
@@ -143,7 +143,7 @@ class Device(
         dtlsParameters: String,
         sctpParameters: String?,
         configuration: PeerConnection.RTCConfiguration,
-        peerConnectionFactory: Long,
+        peerConnectionFactory: Long?,
         appData: String?,
     ): RecvTransport
 }

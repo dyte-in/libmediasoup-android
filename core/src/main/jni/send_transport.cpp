@@ -36,7 +36,8 @@ extern "C"
     MSC_TRACE();
 
     return handleNativeCrash(env,
-                             [&]() {
+                             [&]()
+                             {
                                auto listener = new ProducerListenerJni(env, JavaParamRef<jobject>(env, j_listener));
                                auto track = reinterpret_cast<MediaStreamTrackInterface*>(j_track);
                                std::vector<RtpEncodingParameters> encodings;
@@ -49,6 +50,7 @@ extern "C"
                                {
                                  codecOptions = json::parse(JavaToNativeString(env, JavaParamRef<jstring>(env, j_codecOptions)));
                                }
+
                                json appData = nullptr;
                                if (j_appData != nullptr)
                                {
@@ -67,7 +69,8 @@ extern "C"
     MSC_TRACE();
 
     return handleNativeCrash(env,
-                             [&]() {
+                             [&]()
+                             {
                                auto listener = new DataProducerListenerJni(env, JavaParamRef<jobject>(env, j_listener));
                                auto label = JavaToNativeString(env, JavaParamRef<jstring>(env, j_label));
                                auto protocol = JavaToNativeString(env, JavaParamRef<jstring>(env, j_protocol));
@@ -90,7 +93,8 @@ std::future<void> SendTransportListenerJni::OnConnect(Transport*, const json& dt
 
   return std::async(
     std::launch::async,
-    [](const jobject& j_listener, const jobject& j_transport, const json& dtlsParameters) {
+    [](const jobject& j_listener, const jobject& j_transport, const json& dtlsParameters)
+    {
       JNIEnv* env = webrtc::AttachCurrentThreadIfNeeded();
       env->CallVoidMethod(j_listener, transportListenerOnConnectMethod, j_transport, NativeToJavaString(env, dtlsParameters.dump()).obj());
     },
@@ -111,7 +115,8 @@ std::future<std::string> SendTransportListenerJni::OnProduce(SendTransport*, con
 
   return std::async(
     std::launch::async,
-    [](const jobject& j_listener, const jobject& j_transport, const std::string& kind, const json& rtpParameters, const json& appData) {
+    [](const jobject& j_listener, const jobject& j_transport, const std::string& kind, const json& rtpParameters, const json& appData)
+    {
       JNIEnv* env = webrtc::AttachCurrentThreadIfNeeded();
       auto result = env->CallObjectMethod(j_listener, sendTransportListenerOnProduceMethod, j_transport, NativeToJavaString(env, kind).obj(), NativeToJavaString(env, rtpParameters.dump()).obj(),
                                           NativeToJavaString(env, appData.dump()).obj());
@@ -126,7 +131,8 @@ std::future<std::string> SendTransportListenerJni::OnProduceData(SendTransport*,
 
   return std::async(
     std::launch::async,
-    [](const jobject& j_listener, const jobject& j_transport, const json& sctpStreamParameters, const std::string& label, const std::string& protocol, const json& appData) {
+    [](const jobject& j_listener, const jobject& j_transport, const json& sctpStreamParameters, const std::string& label, const std::string& protocol, const json& appData)
+    {
       JNIEnv* env = webrtc::AttachCurrentThreadIfNeeded();
       auto result = env->CallObjectMethod(j_listener, sendTransportListenerOnProduceDataMethod, j_transport, NativeToJavaString(env, sctpStreamParameters.dump()).obj(),
                                           NativeToJavaString(env, label).obj(), NativeToJavaString(env, protocol).obj(), NativeToJavaString(env, appData.dump()).obj());

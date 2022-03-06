@@ -1,9 +1,6 @@
 package io.github.crow_misia.mediasoup
 
 import android.app.Application
-import io.github.crow_misia.webrtc.initializePeerConnectionFactory
-import io.github.crow_misia.webrtc.log.LogHandler
-import io.github.crow_misia.webrtc.log.WebRtcLogger
 import org.webrtc.Logging
 
 object MediasoupClient {

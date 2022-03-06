@@ -52,6 +52,7 @@ class SendTransport @CalledByNative private constructor(
     ): Producer {
         checkTransportExists()
         val nativeTrack: Long = RTCUtils.getNativeMediaStreamTrack(track)
+        /* println("App Data: "+ appData); */
         return nativeProduce(
             transport = nativeTransport,
             listener = listener,

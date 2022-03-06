@@ -1,7 +1,6 @@
 package io.github.crow_misia.mediasoup
 
 import android.util.Log
-import io.github.crow_misia.webrtc.log.WebRtcLogger
 import org.webrtc.CalledByNative
 
 /**
