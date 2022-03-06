@@ -8,48 +8,19 @@ mediasoup android client side library https://mediasoup.org
 
 ## Get Started
 
-### Gradle
+### Branches
 
-Add dependencies (you can also add other modules that you need):
+- This repo has three notable branches namely: `main` , `dyte`, `upstream-changes`
+    - `main` should only be used in read-only mode and for fetching changes from `upstream`
+    - `dyte` contains all the changes for build used internally
+    - `upstream-changes` is for porting all the changes `upstream`, try to make all the PRs to `upstream` by using this branch only
 
-`${latest.version}` is [![Maven Central](https://img.shields.io/maven-central/v/io.github.crow-misia.libmediasoup-android/libmediasoup-android.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.crow-misia.libmediasoup-android%22%20AND%20a:%22libmediasoup-android%22)
+### Build
 
-```groovy
-dependencies {
-    implementation "io.github.crow-misia.libmediasoup-android:libmediasoup-android:${latest.version}"
-}
-```
+Follow instructions given [here](https://www.notion.so/dyte/Building-libmediasoup-android-9c49b42268974bf5a207d051ea6b1909)
 
-Make sure that you have either `mavenCentral()` in the list of repositories:
+## Side Notes
 
-```
-repository {
-    mavenCentral()
-}
-```
+### Branch Name
 
-## Dependencies
-
-* [libwebrtc-ktx](https://github.com/crow-misia/libwebrtc-ktx)
-
-## Demo project
-
-[mediasoup-demo-android](https://github.com/crow-misia/mediasoup-demo-android)
-
-## License
-
-```
-Copyright 2020, Zenichi Amano.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-```
+- Please do not use `/` in branch name as it hinders workflow of people using _git worktrees_
