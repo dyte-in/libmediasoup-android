@@ -10,14 +10,14 @@ plugins {
 }
 
 object Maven {
-    const val groupId = "io.github.crow-misia.libmediasoup-android"
+    const val groupId = "io.dyte.mediasoup"
     const val artifactId = "libmediasoup-android"
     const val name = "libmediasoup-android"
     const val desc = "mediasoup client side library for Android"
-    const val version = "0.8.1"
-    const val siteUrl = "https://github.com/crow-misia/libmediasoup-android"
-    const val gitUrl = "https://github.com/crow-misia/libmediasoup-android.git"
-    const val githubRepo = "crow-misia/libmediasoup-android"
+    const val version = "0.1"
+    const val siteUrl = "https://github.com/dyte-in/libmediasoup-android"
+    const val gitUrl = "https://github.com/dyte-in/libmediasoup-android.git"
+    const val githubRepo = "dyte-in/libmediasoup-android"
     const val licenseName = "The Apache Software License, Version 2.0"
     const val licenseUrl = "http://www.apache.org/licenses/LICENSE-2.0.txt"
     const val licenseDist = "repo"
@@ -114,7 +114,6 @@ android {
 dependencies {
     api(Kotlin.stdlib)
     implementation(fileTree(mapOf("dir" to "${projectDir}/deps/webrtc/lib", "include" to arrayOf("*.jar"))))
-    api("io.github.crow-misia.libwebrtc:libwebrtc-ktx:_")
 
     testImplementation(Testing.junit4)
     testImplementation("com.willowtreeapps.assertk:assertk-jvm:_")
@@ -184,11 +183,10 @@ afterEvaluate {
 
                     developers {
                         developer {
-                            id.set("crow-misia")
-                            name.set("Zenichi Amano")
-                            email.set("crow.misia@gmail.com")
+                            id.set("DyteINC")
+                            name.set("DYTE INC")
+                            email.set("dev@dyte.io")
                             roles.set(listOf("Project-Administrator", "Developer"))
-                            timezone.set("+9")
                         }
                     }
 
