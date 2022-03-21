@@ -25,7 +25,7 @@
   <methods>;
 }
 
--keep class io.github.crow_misia.mediasoup.** {
+-keep class io.dyte.mediasoup.** {
   @**.CalledByNative <init>(...);
   @**.CalledByNative <methods>;
   native <methods>;

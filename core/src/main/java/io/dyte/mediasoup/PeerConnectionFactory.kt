@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE", "unused")
 
-package io.github.crow_misia.mediasoup
+package io.dyte.mediasoup
 
 import android.app.Application
 import android.util.Log

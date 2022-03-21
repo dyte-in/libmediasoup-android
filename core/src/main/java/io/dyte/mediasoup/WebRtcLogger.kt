@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package io.github.crow_misia.mediasoup
+package io.dyte.mediasoup
 
 import android.util.Log
 

@@ -1,4 +1,4 @@
-package io.github.crow_misia.mediasoup
+package io.dyte.mediasoup
 
 import android.app.Application
 import org.webrtc.Logging

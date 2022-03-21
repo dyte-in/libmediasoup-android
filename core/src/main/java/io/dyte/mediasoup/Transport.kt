@@ -1,4 +1,4 @@
-package io.github.crow_misia.mediasoup
+package io.dyte.mediasoup
 
 import org.webrtc.CalledByNative
 import org.webrtc.PeerConnection

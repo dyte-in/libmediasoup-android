@@ -1,5 +1,5 @@
 import org.jetbrains.dokka.gradle.DokkaTask
-import java.net.URI
+import java.util.*
 
 plugins {
     id("com.android.library")
@@ -14,7 +14,7 @@ object Maven {
     const val artifactId = "libmediasoup-android"
     const val name = "libmediasoup-android"
     const val desc = "mediasoup client side library for Android"
-    const val version = "0.1"
+    const val version = "0.0.1"
     const val siteUrl = "https://github.com/dyte-in/libmediasoup-android"
     const val gitUrl = "https://github.com/dyte-in/libmediasoup-android.git"
     const val githubRepo = "dyte-in/libmediasoup-android"
@@ -149,6 +149,26 @@ val javadocJar by tasks.creating(Jar::class) {
     from(customDokkaTask.outputDirectory)
 }
 
+// Grabbing secrets from local.properties file or from environment variables, which could be used on CI
+val secretPropsFile = project.rootProject.file("local.properties")
+if (secretPropsFile.exists()) {
+    secretPropsFile.reader().use {
+        Properties().apply {
+            load(it)
+        }
+    }.onEach { (name, value) ->
+        ext[name.toString()] = value
+    }
+} else {
+    ext["signing.keyId"] = System.getenv("SIGNING_KEY_ID")
+    ext["signing.password"] = System.getenv("SIGNING_PASSWORD")
+    ext["signing.secretKeyRingFile"] = System.getenv("SIGNING_SECRET_KEY_RING_FILE")
+    ext["ossrhUsername"] = System.getenv("OSSRH_USERNAME")
+    ext["ossrhPassword"] = System.getenv("OSSRH_PASSWORD")
+}
+
+fun getExtraString(name: String) = ext[name]?.toString()
+
 afterEvaluate {
     publishing {
         publications {
@@ -202,21 +222,18 @@ afterEvaluate {
         }
         repositories {
             maven {
-                val releasesRepoUrl = URI("https://oss.sonatype.org/service/local/staging/deploy/maven2")
-                val snapshotsRepoUrl = URI("https://oss.sonatype.org/content/repositories/snapshots")
-                url = if (Maven.version.endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
-                val sonatypeUsername: String? by project
-                val sonatypePassword: String? by project
+                name = "sonatype"
+                setUrl("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
                 credentials {
-                    username = sonatypeUsername.orEmpty()
-                    password = sonatypePassword.orEmpty()
+                    username = getExtraString("ossrhUsername")
+                    password = getExtraString("ossrhPassword")
                 }
             }
         }
     }
 
     signing {
-        sign(publishing.publications.getByName("maven"))
+        sign(publishing.publications)
     }
 }
 
