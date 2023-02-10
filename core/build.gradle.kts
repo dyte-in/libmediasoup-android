@@ -113,7 +113,7 @@ android {
 
 dependencies {
     api(Kotlin.stdlib)
-    implementation(fileTree(mapOf("dir" to "${projectDir}/deps/webrtc/lib", "include" to arrayOf("*.jar"))))
+    implementation("io.dyte:webrtc:0.106.1")
 
     testImplementation(Testing.junit4)
     testImplementation("com.willowtreeapps.assertk:assertk-jvm:_")
