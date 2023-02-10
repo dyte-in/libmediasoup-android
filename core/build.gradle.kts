@@ -8,7 +8,7 @@ plugins {
 }
 
 mavenPublishing {
-    publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.S01, false)
+    publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.S01, true)
     signAllPublications()
 }
 
