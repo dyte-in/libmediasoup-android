@@ -97,7 +97,7 @@ android {
 
 dependencies {
     api(Kotlin.stdlib)
-    implementation("io.dyte:webrtc:0.106.1")
+    implementation("io.dyte:webrtc:0.106.2")
 
     testImplementation(Testing.junit4)
     testImplementation("com.willowtreeapps.assertk:assertk-jvm:_")
